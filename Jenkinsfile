@@ -25,14 +25,13 @@ pipeline {
     
     stage('Terraform Plan') {
       steps {
-        //sh 'cd Terraform'
         sh 'terraform plan -out=tfplan'
       }
     }
     
     stage('Terraform Apply') {
       steps {
-        //sh 'cd Terraform'
+        input message: 'Are you sure you want to apply changes?', ok: 'Yes, apply changes'
         sh 'terraform apply "tfplan"'
       }
     }
